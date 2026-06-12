@@ -107,7 +107,7 @@ export default function App() {
     scenes: [
       {
         id: 1,
-        description: "Binafsha rangli porlayotgan tumanlik va spiral shaklidagi galaktika markazi havoda asta aylanmoqda.",
+        description: "Binafsha rangli porlayotgan tumanlik va spiral shakdilagi galaktika markazi havoda asta aylanmoqda.",
         subtitle: "Chuqur va sirli kosmos tubiga sayohatimizni boshlaymiz!",
         duration: 5
       },
@@ -175,7 +175,7 @@ export default function App() {
   const [chatMessages, setChatMessages] = useState<Message[]>([
     {
       role: 'coach',
-      text: "Salom! Men NexusAi - sizning universal aqlli yordamchingizman. 🔮\nMenda ChatGPT, Claude, Gemini, Kimi va Gamma imkoniyatlari jamlangan.\n\nMenga istalgan savolingizni bering! Slaydlar ko'rinishida taqdimot yoki animatsion videorolik kerak bo'lsa, pastdagi tugmalarni bosing yoki savol yozing! 🚀",
+      text: "Salom! Men NexusAi - sizning universal aqlli yordamchingizman. 🔮\nMenda eng mukammal va aqlli modellar imkoniyatlari jamlangan. 🚀",
       engine: 'chatgpt'
     }
   ]);
@@ -211,6 +211,17 @@ export default function App() {
 
   const triggerFileSelect = () => {
     fileInputRef.current?.click();
+  };
+
+  const getEngineLabel = (engineID: string) => {
+    const map: Record<string, string> = {
+      chatgpt: 'Model Alpha',
+      claude: 'Model Beta',
+      gemini: 'Model Quantum',
+      kimi: 'Model Prime',
+      gamma: 'Model Nova'
+    };
+    return map[engineID] || engineID;
   };
 
   // Parse Profile from LocalStorage on mount
@@ -646,7 +657,6 @@ export default function App() {
       // Clean and highly typo-tolerant offline fallback helper
       const queryLower = typedText.toLowerCase().trim();
       
-      const isCarBMW = /bmw|bmv|bwm|moshina|mashina|masina|mosina|moshin|mashin|avto|avtomobil|car/i.test(queryLower);
       const isWantSlide = /slayd|slayid|slaed|slide|prezent|prezentatsiya|taqdimot|taqdimos|shlayd|shlayid/i.test(queryLower);
       const isWantVid = /video|vidio|vedio|vido|vidyo|rolik|ralik|roilk|roliklar|klip|clip/i.test(queryLower);
       
@@ -655,19 +665,11 @@ export default function App() {
         : `Siz so'ragan mavzu bo'yicha maxsus tayyorlangan materiallar va multimedia elementlari:`;
 
       if (isWantSlide) {
-        if (isCarBMW) {
-          simulatedText += `\n\n[SLIDES_START]\nTheme: Vibrant Cosmic\nTitle: BMW Muhandislik San'ati\n---\nSlide: 1. BMW Tarixi\nContent: BMW - premium toifasidagi yetakchi nemis avtomobil brendi.\n---\nSlide: 2. M-Power Quvvati\nContent: Maxsus tayyorlangan poyga motorlari va mukammal drayv dinamikasi.\n---\nSlide: 3. Innovatsiyalar\nContent: To'liq elektrlashtirilgan i-Power seriyali gibrid tizimlar.\n[SLIDES_END]`;
-        } else {
-          simulatedText += `\n\n[SLIDES_START]\nTheme: Sunset Warm\nTitle: Kirish: Sun'iy Intellekt\n---\nSlide: 1. AI Asosi\nContent: Sun'iy intellect - kompyuter mashinalariga aqlli xususiyatlar berish san'atidir.\n---\nSlide: 2. Slayd yaratilishi\nContent: Gamma va NexusAi tizimi yordamida prezentatsiyalar sekundlarda pishib yetiladi.\n---\nSlide: 3. Yakuniy Qism\nContent: Amaliy topshiriqlarni davom etamiz!\n[SLIDES_END]`;
-        }
+        simulatedText += `\n\n[SLIDES_START]\nTheme: Sunset Warm\nTitle: Kirish: Sun'iy Intellekt\n---\nSlide: 1. AI Asosi\nContent: Sun'iy intellect - kompyuter mashinalariga aqlli xususiyatlar berish san'atidir.\n---\nSlide: 2. Slayd yaratilishi\nContent: Gamma va NexusAi tizimi yordamida prezentatsiyalar sekundlarda pishib yetiladi.\n---\nSlide: 3. Yakuniy Qism\nContent: Amaliy topshiriqlarni davom etamiz!\n[SLIDES_END]`;
       } else if (isWantVid) {
-        if (isCarBMW) {
-          simulatedText += `\n\n[VIDEO_START]\nVideoTitle: BMW M5 - Quvvat Simvolika\nAudioTrack: happy\n---\nScene: Qorong'u fonda aylanayotgan yorqin neon ko'k chiziqli BMW logotipi\nSubtitle: Bugun biz afsonaviy xarakter va quvvatga ega bo'lgan BMW avtomobillari dunyosiga nazar tashlaymiz!\nDuration: 10\n---\nScene: Yomg'irli tog' yo'lida ulkan tezlikda ketayotgan va g'ildiraklaridan suv sachrayotgan qora rangdagi BMW M5 Competition\nSubtitle: Eng zamonaviy muhandislik namunalari va yirtqich motor bahosi har bir haydovchini lol qoldirishi shubhasiz.\nDuration: 15\n---\nScene: Elektr zaryadlovchiga ulangan va futuristik ko'k tusda tovlanayotgan BMW i8 gibrid sport moshinasi\nSubtitle: Ekologik barqarorlik va gibrid sport innovatsiyalari orqali kelajak texnologiyasi bugundanoq boshlanadi.\nDuration: 15\n---\nScene: Avtomobilning premium raqamli boshqaruv paneli va ruli, tezlik datchigi va GPS xaritasi yorishishi\nSubtitle: Aqlli yordamchi tizimlar va mukammal drayv qulayligi har bir sayohatingizni unutilmas qiladi.\nDuration: 10\n---\nScene: BMW M seriyali sport mashinasining drift maydonchasida qalin oq tutun hosil qilib burilish yasashi\nSubtitle: Dvigatellarining mislsiz kuchi, dinamika va toza drayv zavqi — bu haqiqiy BMW falsafasidir!\nDuration: 10\n[VIDEO_END]`;
-        } else {
-          simulatedText += `\n\n[VIDEO_START]\nVideoTitle: Kelajak NexusAi Olamida\nAudioTrack: piano\n---\nScene: Sokin porlayotgan tilla va yashil yaltiragan yulduzcha klasterlar\nSubtitle: Kelajakda dars va ish tizimi butunlay avtomatlashadi.\nDuration: 5\n---\nScene: To'lqin shaklidagi binafsha sinus to'lqini ovoz tebranishi bilan harakatlanishi\nSubtitle: Biz siz istagan har qanday hikoyani rolikka aylantiramiz!\nDuration: 6\n[VIDEO_END]`;
-        }
+        simulatedText += `\n\n[VIDEO_START]\nVideoTitle: Kelajak NexusAi Olamida\nAudioTrack: piano\n---\nScene: Sokin porlayotgan tilla va yashil yaltiragan yulduzcha klasterlar\nSubtitle: Kelajakda dars va ish tizimi butunlay avtomatlashadi.\nDuration: 5\n---\nScene: To'lqin shaklidagi binafsha sinus to'lqini ovoz tebranishi bilan harakatlanishi\nSubtitle: Biz siz istagan har qanday hikoyani rolikka aylantiramiz!\nDuration: 6\n[VIDEO_END]`;
       } else {
-        simulatedText += `\n\nSiz tanlagan "${activeEngine.toUpperCase()}" modeli muvaffaqiyatli javob berdi. NexusAi tizimi orqali slaydlar (${profile.language === 'en' ? 'presentations' : 'taqdimotlar'}) va videorolik olish uchun ko'rsatmalarni yozishda davom eting!`;
+        simulatedText += `\n\nSiz tanlagan "${getEngineLabel(activeEngine)}" modeli muvaffaqiyatli javob berdi. NexusAi tizimi orqali slaydlar (${profile.language === 'en' ? 'presentations' : 'taqdimotlar'}) va videorolik olish uchun ko'rsatmalarni yozishda davom eting!`;
       }
 
       setChatMessages(prev => [...prev, {
@@ -847,7 +849,6 @@ export default function App() {
             <p className="text-[10px] text-slate-500 font-mono tracking-wider">Multi-Model AI Workspace Engine</p>
           </div>
         </div>
-
         {/* Global balance points and audio synthesis triggers */}
         <div className="flex items-center flex-wrap gap-2.5 md:gap-3.5 text-xs">
           {/* Synchronized Language Select Switch */}
@@ -935,47 +936,6 @@ export default function App() {
                 </h3>
               </div>
             </div>
-
-            {/* PREDICTIVE OPT-IN AUDIO SYNTHESIS MODULE */}
-            <div className="bg-slate-950/60 rounded-xl p-3 border border-slate-800/60 space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  <Headphones className="w-4 h-4 text-indigo-400" />
-                  <span className="text-xs font-bold text-slate-300">{isEn ? "Speech Audio Settings" : "Ovozli Yordamchi Sozlamalari"}</span>
-                </div>
-                <span className="bg-amber-400/10 text-amber-500 border border-amber-500/20 text-[8px] font-bold px-1.5 py-0.5 rounded-md uppercase tracking-wide">
-                  Opt-In
-                </span>
-              </div>
-              
-              <p className="text-[10.5px] text-slate-500 leading-relaxed">
-                {isEn 
-                  ? "Voice response is OFF by default. Tap the speaker icon [🔊] next to any message below to hear on-demand high quality speech narration."
-                  : "Mavzu ovozi o'chirilgan. Istalgan xabar ostidagi [🔊] belgisini bosib, faqat xohlaganingizda matnni eshitishingiz mumkin."}
-              </p>
-
-              <div className="flex items-center justify-between bg-slate-900 px-3 py-2 rounded-lg border border-slate-800">
-                <span className="text-[11px] font-bold text-slate-300">{isEn ? "Auto-read AI replies" : "Avtomatik ovozli o'qish"}</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const nextVal = !autoSpeechEnabled;
-                    setAutoSpeechEnabled(nextVal);
-                    if (nextVal) {
-                      speakMessage(isEn ? "Auto speech output enabled" : "Avtomatik ovozli tizim faollashtirildi", profile.language === 'en' ? 'en' : 'uz');
-                    }
-                    showNotification(nextVal ? "Auto Speech Synthesizer ON" : "Auto Speech Synthesizer OFF", "info");
-                  }}
-                  className={`w-9 h-5 rounded-full transition-colors relative cursor-pointer ${
-                    autoSpeechEnabled ? 'bg-indigo-600' : 'bg-slate-800'
-                  }`}
-                >
-                  <div className={`w-3.5 h-3.5 bg-white rounded-full absolute top-0.8 transition-all duration-200 ${
-                    autoSpeechEnabled ? 'right-0.8' : 'left-0.8'
-                  }`} />
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* Quick System Reset Helper */}
@@ -1015,12 +975,20 @@ export default function App() {
                   gamma: 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                 };
 
+                const engineLabelsMap = {
+                  chatgpt: 'Model Alpha',
+                  claude: 'Model Beta',
+                  gemini: 'Model Quantum',
+                  kimi: 'Model Prime',
+                  gamma: 'Model Nova'
+                };
+
                 return (
                   <button
                     key={eng}
                     onClick={() => {
                       setActiveEngine(eng);
-                      showNotification(`Switched to active engine: ${eng.toUpperCase()}`, "success");
+                      showNotification(`Switched to active engine: ${engineLabelsMap[eng]}`, "success");
                     }}
                     className={`px-2.5 py-1.5 text-[10.5px] rounded-lg font-black tracking-wide border cursor-pointer uppercase transition-all whitespace-nowrap ${
                       activeEngine === eng 
@@ -1028,7 +996,7 @@ export default function App() {
                         : 'border-transparent text-slate-500 hover:bg-slate-900 hover:border-slate-800'
                     }`}
                   >
-                    {eng}
+                    {engineLabelsMap[eng]}
                   </button>
                 );
               })}
@@ -1077,7 +1045,7 @@ export default function App() {
                     {msg.role === 'coach' && (
                       <div className="mt-3 pt-2.5 border-t border-slate-805/70 flex items-center justify-between flex-wrap gap-2">
                         <span className="text-[9px] font-mono uppercase bg-slate-950/80 px-2 py-0.5 rounded text-slate-500">
-                          {msg.engine ? `Engine: ${msg.engine}` : 'System'}
+                          {msg.engine ? `Engine: ${getEngineLabel(msg.engine)}` : 'System'}
                         </span>
                         
                         {(() => {

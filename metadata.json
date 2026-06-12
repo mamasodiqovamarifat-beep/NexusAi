@@ -1,6 +1,6 @@
 {
   "name": "NexusAi",
-  "description": "Multi-engine AI assistant combining ChatGPT, Claude, Gemini, Kimi & Gamma with interactive PPT slides, animation storyboards, voice synthesis, and language support.",
+  "description": "Multi-engine AI assistant with interactive PPT slides, animation storyboards, voice synthesis, and language support.",
   "requestFramePermissions": ["microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -24,8 +24,8 @@ export default function AICoachOwl({ profile, onXPUnlock, onCoinUnlock }: AICoac
   // Localized string dictionary
   const t = {
     welcome: isEn 
-      ? `Hello, ${profile.name || 'friend'}! 🦉 I am your learning buddy. Ask me any general knowledge questions or demand drawing cartoon images!`
-      : `Salom, ${profile.name || 'do\'stim'}! 🦉 Men sizning bilim va rasm yordamchingizman. Menga istalgan savolni bering yoki rasm chizishni so'rang!`,
+      ? `Hello, ${profile.name || 'friend'}! 🦉 I am your learning buddy.`
+      : `Salom, ${profile.name || 'do\'stim'}! 🦉 Men sizning bilim va rasm yordamchingizman.`,
     thinking: isEn ? 'Thinking...' : 'Fikr qilmoqda...',
     voiceReady: isEn ? 'Voice assistant ready' : 'Ovozli yordamchi tayyor',
     heard: isEn ? 'I heard you!' : 'Eshitdim!',
