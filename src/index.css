@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Duolingo style button bouncing keyframe animations */
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scaleUp {
+  animation: scaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom hide scroll bars */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Dynamic Equalizer Visualizer Animations */
+@keyframes waveJump {
+  0%, 100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1.2);
+  }
+}
+
+.animate-wave-bar-1 {
+  animation: waveJump 0.9s ease-in-out infinite;
+  animation-delay: 0.1s;
+}
+.animate-wave-bar-2 {
+  animation: waveJump 0.75s ease-in-out infinite;
+  animation-delay: 0.35s;
+}
+.animate-wave-bar-3 {
+  animation: waveJump 1.15s ease-in-out infinite;
+  animation-delay: 0.15s;
+}
+.animate-wave-bar-4 {
+  animation: waveJump 0.85s ease-in-out infinite;
+  animation-delay: 0.45s;
+}
+.animate-wave-bar-5 {
+  animation: waveJump 1.05s ease-in-out infinite;
+  animation-delay: 0.25s;
+}
